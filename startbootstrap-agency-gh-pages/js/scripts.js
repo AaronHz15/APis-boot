@@ -7,32 +7,6 @@
 // Scripts
 // 
 
-
-
-//permiso de geolocalizacion
-if('geolocation' in navigator){
-    navigator.geolocation.watchPosition(Position=>{
-        const {latitude,longitude} = Position.coords;
-        verClima(latitude,longitude);
-    },()=>{
-        console.log('permiso no aceptado');
-    })
-}
-
-
-//geolocalizacion 
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(
-    browserHasGeolocation
-        ? "Error: The Geolocation service failed."
-        : "Error: Your browser doesn't support geolocation."
-    );
-    infoWindow.open(map);
-}
-window.initMap = initMap;
-
-
 //Code Default Of BootsStra
 window.addEventListener('DOMContentLoaded', event => {
 
