@@ -1,0 +1,31 @@
+<?php
+$servidor = "localhost";
+$usuario  = "root"; 
+$password = "";     
+$dbname   = "contacto_db";
+
+try {
+    $conexion = new PDO("jdbc:mysql://localhost:3306/contacto_db", $usuario, $password);
+    $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Validar que lleguen los datos
+    if(!empty($_POST['nombre']) && !empty($_POST['email'])) {
+        $sql = "INSERT INTO mensajes (nombre, email, telefono, mensaje) VALUES (:n, :e, :t, :m)";
+        $stmt = $conexion->prepare($sql);
+        
+        $stmt->execute([
+            ':n' => $_POST['nombre'],
+            ':e' => $_POST['email'],
+            ':t' => $_POST['telefono'],
+            ':m' => $_POST['mensaje']
+        ]);
+
+        echo "¡Gracias! Tu mensaje ha sido registrado.";
+    } else {
+        echo "Por favor, completa todos los campos obligatorios.";
+    }
+
+} catch(PDOException $e) {
+    echo "Error en el servidor: " . $e->getMessage();
+}
+?>
