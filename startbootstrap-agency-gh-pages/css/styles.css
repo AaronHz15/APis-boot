@@ -12,6 +12,19 @@
  */
 
 *
+#map {
+        display: flex;
+        flex-direction: column; /* Alinea los elementos uno arriba del otro */
+        align-items: center;    /* Centra horizontalmente */
+        justify-content: center; /* Centra verticalmente si el div tiene altura */
+        text-align: center;     /* Centra el texto del h1 */
+        width: 100%;
+    }
+
+    iframe {
+        max-width: 100%; /* Evita que el mapa se salga en pantallas pequeñas */
+    }
+
 :root {
             --db-orange: #ff8c00;
             --db-blue: #1e3a8a;

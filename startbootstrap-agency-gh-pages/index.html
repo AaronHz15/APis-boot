@@ -16,7 +16,10 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     </head>
+
+
     <body id="page-top">
+
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
@@ -39,6 +42,7 @@
                 </div>
             </div>
         </nav>
+        
         <!-- Masthead-->
         <header class="masthead">
             <div class="container">
@@ -47,6 +51,7 @@
                 <a class="btn btn-primary btn-xl text-uppercase" href="#services">ACERCA DE</a>
             </div>
         </header>
+        
         <!-- Services-->
         <section class="page-section" id="services">
             <div class="container">
@@ -380,7 +385,7 @@
                             <h4>Hernandez Aparicio Fernando Aaron</h4>
                             <p class="text-muted">Desarrollador</p>
                             <div class="d-flex justify-content-center">
-                                <a class="btn btn-dark btn-social mx-2" href="https://www.instagram.com/aaronhz_15/" aria-label="Instagram"><i class="fi fi-brands-instagram"></i></a>
+                                <a class="btn btn-dark btn-social mx-2" href="https://www.instagram.com/aaronhz_15/" aria-label="Instagram"><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
@@ -429,7 +434,7 @@
 
         <!-- Google maps -->
         <div id="map">
-            <h1><font color="black">Ubicacion de la<br><em>UTTEC</em></font></h1>
+            <h1>Ubicacion de la<br><em>UTTEC</h1>
             <!-- How to change your own map point
                     1. Go to Google Maps
                     2. Click on your location point
@@ -441,110 +446,39 @@
 
         <!-- Contact-->
         <section class="page-section" id="contact">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Contactanos</h2>
-                    <h3 class="section-subheading text-muted">Quejas o sugerencias...</h3>
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">Contactanos</h2>
+            <h3 class="section-subheading text-muted">Quejas o sugerencias...</h3>
+        </div>
+
+        <form id="contactForm">
+            <div class="row align-items-stretch mb-5">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input class="form-control" id="name" type="text" placeholder="Tu Nombre *" required />
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" id="email" type="email" placeholder="Tu Email *" required />
+                    </div>
+                    <div class="form-group mb-md-0">
+                        <input class="form-control" id="phone" type="tel" placeholder="Tu Teléfono *" required />
+                    </div>
                 </div>
-                <!-- * * * * * * * * * * * * * * *-->
-                <!-- * * SB Forms Contact Form * *-->
-                <!-- * * * * * * * * * * * * * * *-->
-                <!-- This form is pre-integrated with SB Forms.-->
-                <!-- To make this form functional, sign up at-->
-                <!-- https://startbootstrap.com/solution/contact-forms-->
-                <!-- to get an API token!-->
-               <form id="contactForm">
-    <div class="row align-items-stretch mb-5">
-        <div class="col-md-6">
-            <div class="form-group mb-3">
-                <input class="form-control" id="name" type="text" placeholder="Ingresa tu Nombre *" required />
+                <div class="col-md-6">
+                    <div class="form-group form-group-textarea mb-md-0">
+                        <textarea class="form-control" id="message" placeholder="Tu Mensaje *" required></textarea>
+                    </div>
+                </div>
             </div>
-            <div class="form-group mb-3">
-                <input class="form-control" id="email" type="email" placeholder="Ingresa tu Correo *" required />
+            <div class="text-center">
+                <button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Enviar a Firestore</button>
             </div>
-            <div class="form-group mb-md-0">
-                <input class="form-control" id="phone" type="tel" placeholder="Ingresa tu Telefono *" required />
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group form-group-textarea mb-md-0">
-                <textarea class="form-control" id="message" placeholder="Deposita Aqui tu Mensaje *" required style="height: 100%; min-height: 200px;"></textarea>
-            </div>
-        </div>
+        </form>
     </div>
+    
+</section>
 
-    <div class="d-none" id="submitSuccessMessage">
-        <div class="text-center text-white mb-3 p-3 bg-success rounded">
-            ¡Mensaje guardado en Firebase con éxito!
-        </div>
-    </div>
-    <div class="d-none" id="submitErrorMessage">
-        <div class="text-center text-danger mb-3 p-3 bg-light rounded">
-            Error al enviar. ¿Activaste Firestore en la consola?
-        </div>
-    </div>
-
-    <div class="text-center">
-        <button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Enviar Mensaje</button>
-    </div>
-</form>
-
-<script type="module">
-    // Importamos las librerías desde el CDN para que funcionen en el navegador
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-    // Tu configuración exacta de Firebase
-    const firebaseConfig = {
-        apiKey: "AIzaSyCSpxbFCqGQYqwnJx0BY8z4eTSiiVnpQNI",
-        authDomain: "contactobd-820c1.firebaseapp.com",
-        databaseURL: "https://contactobd-820c1-default-rtdb.firebaseio.com",
-        projectId: "contactobd-820c1",
-        storageBucket: "contactobd-820c1.firebasestorage.app",
-        messagingSenderId: "1003816971760",
-        appId: "1:1003816971760:web:0ad8eec1d37019efc38135",
-        measurementId: "G-J9W12VBKQY"
-    };
-
-    // Inicializar
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    const form = document.getElementById('contactForm');
-    const btn = document.getElementById('submitButton');
-
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        btn.disabled = true;
-        btn.innerText = "Enviando...";
-
-        try {
-            // Guardamos en la colección "mensajes"
-            await addDoc(collection(db, "mensajes"), {
-                nombre: document.getElementById('name').value,
-                correo: document.getElementById('email').value,
-                telefono: document.getElementById('phone').value,
-                mensaje: document.getElementById('message').value,
-                fecha: new Date().toLocaleString()
-            });
-
-            document.getElementById('submitSuccessMessage').classList.remove('d-none');
-            document.getElementById('submitErrorMessage').classList.add('d-none');
-            form.reset();
-        } catch (error) {
-            console.error(error);
-            document.getElementById('submitErrorMessage').classList.remove('d-none');
-        } finally {
-            btn.disabled = false;
-            btn.innerText = "Enviar Mensaje";
-        }
-    });
-</script>
-            </div>
-        </section>
-
-        
 
         <!-- Footer-->
         <footer class="footer py-4">
