@@ -475,6 +475,58 @@
                 <button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Enviar a Firestore</button>
             </div>
         </form>
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+            import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+            // 1. TU CONFIGURACIÓN DE FIREBASE (Copia y pega la tuya aquí)
+            const firebaseConfig = {
+                apiKey: "AIzaSyCSpxbFCqGQYqwnJx0BY8z4eTSiiVnpQNI",
+                authDomain: "contactobd-820c1.firebaseapp.com",
+                databaseURL: "https://contactobd-820c1-default-rtdb.firebaseio.com",
+                projectId: "contactobd-820c1",
+                storageBucket: "contactobd-820c1.firebasestorage.app",
+                messagingSenderId: "1003816971760",
+                appId: "1:1003816971760:web:0ad8eec1d37019efc38135",
+                measurementId: "G-J9W12VBKQY"
+            };
+
+
+            // 2. Inicializar Firebase y la base de datos
+            const app = initializeApp(firebaseConfig);
+            const db = getFirestore(app);
+
+            // 3. Capturar el evento del formulario
+            const contactForm = document.getElementById('contactForm');
+
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault(); // Evita que la página se recargue
+
+                // Obtener valores de los inputs
+                const nombre = document.getElementById('name').value;
+                const correo = document.getElementById('email').value;
+                const telefono = document.getElementById('phone').value;
+                const mensaje = document.getElementById('message').value;
+
+                try {
+                // 4. Guardar en la colección "contactos_uttec"
+                const docRef = await addDoc(collection(db, "contactos_uttec"), {
+                    nombre: nombre,
+                    correo: correo,
+                    telefono: telefono,
+                    mensaje: mensaje,
+                    fecha: new Date()
+                });
+
+                alert("¡Enviado a Firestore con éxito! ID: " + docRef.id);
+                contactForm.reset(); // Limpia el formulario
+                
+                } catch (error) {
+                console.error("Error al añadir el documento: ", error);
+                alert("Hubo un error al enviar.");
+                }
+            });
+        </script>
     </div>
     
 </section>
